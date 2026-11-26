@@ -22,12 +22,27 @@ interface SearchResponse {
   results: Track[]
 }
 
-export async function getTracks(term: string, limit = 50): Promise<Track[]> {
+function normalizeTitle(title: string): string {
+  return title
+    .replace(/\s*\(feat\..*?\)/gi, '')
+    .replace(/\s*\(Radio Edit\)/gi, '')
+    .replace(/\s*-\s*Remaster(ed)?.*$/i, '')
+    .replace(/\s*\([^)]*?\bVersion\b[^)]*?\)/gi, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim()
+}
+
+export async function getTracks(
+  term: string,
+  limit = 50,
+  attribute?: string,
+): Promise<Track[]> {
   const params = new URLSearchParams({
     term,
     entity: 'song',
     limit: String(limit),
   })
+  if (attribute) params.set('attribute', attribute)
 
   const response = await fetch(`${BASE_URL}?${params}`)
 
@@ -41,25 +56,20 @@ export async function getTracks(term: string, limit = 50): Promise<Track[]> {
   const getKey = (track: Track) =>
     normalizeTitle(track.trackName).toLowerCase() + '|' + track.artistName.toLowerCase()
 
-  const unique = withPreview.filter(
+  return withPreview.filter(
     (track, index) =>
       withPreview.findIndex((other) => getKey(other) === getKey(track)) === index,
   )
 
-  console.log(`Всего: ${data.results.length}, с превью: ${withPreview.length}, уникальных: ${unique.length}`)
-  return unique
-
 }
 
-console.log(normalizeTitle('Michael Jackson - Rock with You (Single Version)'));
+export async function getTracksByGenre(genre: string): Promise<Track[]> {
+  const artists = GENRE_ARTISTS[genre]
+  if (!artists) throw new Error(`Неизвестный жанр: ${genre}`)
 
-
-function normalizeTitle(title: string): string {
-  return title
-    .replace(/\s*\(feat\..*?\)/gi, "")
-    .replace(/\s*\(Radio Edit\)/gi, "")
-    .replace(/\s*-\s*Remaster(ed)?.*$/i, "")
-    .replace(/\s*\([^)]*?\bVersion\b[^)]*?\)/gi, "")
-    .replace(/\s{2,}/g, " ")
-    .trim(); 
+  const results = await Promise.all(
+    artists.map((artist) => getTracks(artist, 25, 'artistTerm')),
+  )
+  
+  return results.flat()
 }
