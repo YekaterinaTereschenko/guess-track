@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 import type { Question } from './buildQuestions'
 
-type Status = 'idle' | 'playing' | 'answered' | 'finished'
+export type Status = 'idle' | 'playing' | 'answered' | 'finished'
 
-interface LastAnswer {
+export interface LastAnswer {
   selectedId: number | null
   isCorrect: boolean
   points: number

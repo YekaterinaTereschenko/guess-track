@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
-import { useCountdown } from "../entities/useCountdown";
+import type { Track } from '../entities/getTracks'
+import PlayButton from "../shared/ui/PlayButton";
 
-export default function TimerCard() {
-    const TOTAL = 15
+interface Props {
+    correct: Track
+    secondsLeft: number
+    total: number
+}
+
+export default function TimerCard({ correct, secondsLeft, total }: Props) {
     const CIRCLE = 603.2
-
-    const { secondsLeft, reset } = useCountdown(TOTAL, () => {
-        console.log('время вышло')
-    })
 
     return (
         <div className="flex w-full max-w-[420px] flex-col items-center justify-between gap-8 rounded-[28px] bg-white p-10 text-ink">
@@ -15,9 +16,7 @@ export default function TimerCard() {
                 Что это за песня?
             </h1>
 
-            <div
-                role="img"
-                className="relative h-[220px] w-[220px]"
+            <div className="relative h-[220px] w-[220px]"
             >
                 <svg viewBox="0 0 220 220" className="h-full w-full" aria-hidden="true">
                     <circle
@@ -35,7 +34,7 @@ export default function TimerCard() {
                         fill="none"
                         strokeWidth="16"
                         strokeLinecap="round"
-                        strokeDasharray={`${(CIRCLE * secondsLeft) / TOTAL} ${CIRCLE}`}
+                        strokeDasharray={`${(CIRCLE * secondsLeft) / total} ${CIRCLE}`}
                         transform="rotate(-90 110 110)"
                         className="stroke-brand"
                     />
@@ -45,15 +44,7 @@ export default function TimerCard() {
                 </span>
             </div>
 
-            <button
-                type="button"
-                aria-label="Воспроизвести отрывок"
-                className="flex h-24 w-24 items-center justify-center rounded-full bg-accent text-ink transition hover:opacity-90"
-            >
-                <svg width="42" height="42" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8 5v14l11-7z" fill="currentColor" />
-                </svg>
-            </button>
+            <PlayButton previewUrl={correct.previewUrl} />
 
             <p className="text-base text-ink/60">Отрывок 30 секунд</p>
         </div>

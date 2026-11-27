@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320" role="img" aria-label="Грустная пластинка">
+  <ellipse cx="160" cy="298" rx="96" ry="10" fill="#14082E" opacity="0.25"/>
+  <g transform="rotate(-6 160 160)">
+    <circle cx="160" cy="160" r="122" fill="#14082E"/>
+    <circle cx="160" cy="160" r="108" fill="none" stroke="#3A2A66" stroke-width="3"/>
+    <circle cx="160" cy="160" r="95" fill="none" stroke="#3A2A66" stroke-width="3"/>
+    <circle cx="160" cy="160" r="82" fill="none" stroke="#3A2A66" stroke-width="3"/>
+    <circle cx="160" cy="160" r="69" fill="none" stroke="#3A2A66" stroke-width="3"/>
+    <path d="M70 110 A104 104 0 0 1 128 58" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="160" cy="160" r="58" fill="#FFE600"/>
+    <path d="M130 146 L148 138" stroke="#14082E" stroke-width="5" stroke-linecap="round"/>
+    <path d="M190 146 L172 138" stroke="#14082E" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="141" cy="158" rx="6" ry="7" fill="#14082E"/>
+    <ellipse cx="179" cy="158" rx="6" ry="7" fill="#14082E"/>
+    <ellipse cx="124" cy="178" rx="9" ry="6" fill="#FF3D81" opacity="0.75"/>
+    <ellipse cx="194" cy="176" rx="9" ry="6" fill="#FF3D81" opacity="0.75"/>
+    <path d="M144 192 Q160 178 176 192" fill="none" stroke="#14082E" stroke-width="5" stroke-linecap="round"/>
+    <path d="M141 170 C134 181 134 189 141 191 C148 189 148 181 141 170 Z" fill="#00E0C6"/>
+  </g>
+  <g transform="rotate(18 262 70)">
+    <circle cx="252" cy="92" r="14" fill="#FF3D81"/>
+    <rect x="262" y="38" width="6" height="56" rx="3" fill="#FF3D81"/>
+    <path d="M265 38 Q290 46 284 66" fill="none" stroke="#FF3D81" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g transform="rotate(-28 56 72)">
+    <circle cx="48" cy="88" r="11" fill="#00E0C6"/>
+    <rect x="56" y="46" width="5" height="44" rx="2.5" fill="#00E0C6"/>
+    <path d="M58 46 L76 52" stroke="#00E0C6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <path d="M286 150 l10 -4 M290 168 l12 2 M42 170 l-11 -3 M46 188 l-10 5" stroke="#DCD0FF" stroke-width="4" stroke-linecap="round"/>
+</svg>
